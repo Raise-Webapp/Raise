@@ -1,0 +1,2 @@
+module DuctLinesHelper
+end

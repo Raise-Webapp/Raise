@@ -1,0 +1,23 @@
+<h1>Ducts</h1>
+
+<div class="duct-lines-container">
+  <% @ducts.each do |duct| %>
+    <div class="duct-line-card">
+      <h2><%= duct.duct_line.name %></h2>
+      <p><strong>Line Type:</strong> <%= duct.line_type %></p>
+      <p><strong>Location:</strong> <%= duct.location %></p>
+      <p><strong>Floor:</strong> <%= duct.floors %></p>
+      <p><strong>Position:</strong> <%= duct.position %></p>
+      <p><strong>Width:</strong> <%= duct.width %></p>
+      <p><strong>Height:</strong> <%= duct.height %></p>
+      <p><strong>Length:</strong> <%= duct.length %></p>
+      <div class="duct-line-actions">
+        <%= link_to 'View', duct, class: 'btn btn-primary' %>
+        <%= link_to 'Edit', edit_duct_path(duct), class: 'btn btn-secondary' %>
+        <%= link_to 'Delete', duct, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'New Duct', new_duct_path, class: 'btn btn-success' %>

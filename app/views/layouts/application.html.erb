@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Raise</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <%= image_tag 'raise_logo.png', alt: 'Raise Manufacturing & Trading' %>
+        </div>
+        <nav>
+          <%= link_to 'Duct Line', duct_lines_path, class: 'nav-button' %>
+          <%= link_to 'Duct', ducts_path, class: 'nav-button' %>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <%= yield %>
+    </main>
+  </body>
+</html>

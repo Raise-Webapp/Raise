@@ -1,0 +1,25 @@
+<div class="duct-line-form">
+  <h1><%= @duct_line.name %></h1>
+
+  <div class="image-container">
+    <% if @duct_line.image.attached? %>
+      <%= image_tag @duct_line.image, class: "full-size" %>
+      <%= link_to "Download Image", rails_blob_path(@duct_line.image, disposition: "attachment"), class: 'download-btn' %>
+    <% else %>
+      <p>No image available</p>
+    <% end %>
+  </div>
+
+  <div class="duct-line-pdf">
+    <% if @duct_line.pdf_document.attached? %>
+      <%= link_to "Download PDF", rails_blob_path(@duct_line.pdf_document, disposition: "attachment"), class: 'download-btn' %>
+    <% else %>
+      <p>No PDF available</p>
+    <% end %>
+  </div>
+
+  <div class="duct-line-actions">
+    <%= link_to 'Edit', edit_duct_line_path(@duct_line), class: 'btn btn-primary' %>
+    <%= link_to 'Back', duct_lines_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

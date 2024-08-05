@@ -1,0 +1,59 @@
+<%= form_with(model: duct, local: true) do |form| %>
+  <% if duct.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(duct.errors.count, "error") %> prohibited this duct from being saved:</h2>
+      <ul>
+        <% duct.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :duct_line_id, "Duct Line" %>
+    <%= form.collection_select :duct_line_id, DuctLine.all, :id, :name, { prompt: "Pick A Duct Line" }, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :line_type, "Line Type" %>
+    <%= form.select :line_type, ["Type 1", "Type 2", "Type 3"], { prompt: "Line Type" }, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.select :location, ["Location 1", "Location 2", "Location 3"], { prompt: "Location" }, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :floors %>
+    <%= form.text_field :floors, placeholder: "Floor Number" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.text_field :position, placeholder: "Position on Image" %>
+  </div>
+
+  <div class="field">
+    <h2>Dimensions</h2>
+    <div class="dimensions">
+      <div>
+        <%= form.label :width %>
+        <%= form.number_field :width, placeholder: "000" %>
+      </div>
+      <div>
+        <%= form.label :height %>
+        <%= form.number_field :height, placeholder: "000" %>
+      </div>
+      <div>
+        <%= form.label :length %>
+        <%= form.number_field :length, placeholder: "000" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "btn-save" %>
+  </div>
+<% end %>

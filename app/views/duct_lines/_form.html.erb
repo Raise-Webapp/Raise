@@ -1,0 +1,41 @@
+<%= form_with(model: duct_line, local: true) do |form| %>
+  <% if duct_line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(duct_line.errors.count, "error") %> prohibited this duct line from being saved:</h2>
+      <ul>
+        <% duct_line.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Name of the vent" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <div class="upload-box">
+      <%= form.file_field :image, class: "file-input", data: { target: 'image-upload' } %>
+      <div class="upload-icon">
+        <span class="upload-text" data-target="image-upload-text">Click to Upload</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :pdf_document, "Manual" %>
+    <div class="upload-box">
+      <%= form.file_field :pdf_document, class: "file-input", data: { target: 'pdf-upload' } %>
+      <div class="upload-icon">
+        <span class="upload-text" data-target="pdf-upload-text">Click to Upload</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "btn-save" %>
+  </div>
+<% end %>

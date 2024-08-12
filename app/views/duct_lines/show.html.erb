@@ -18,8 +18,30 @@
     <% end %>
   </div>
 
+  <h2>Ducts</h2>
+  <div class="ducts-grid">
+    <% @duct_line.ducts.each do |duct| %>
+      <div class="duct-card">
+        <h3><%= duct.position %></h3>
+        <div class="duct-details">
+          <p><strong>Line Type:</strong> <%= duct.line_type %></p>
+          <p><strong>Location:</strong> <%= duct.location %></p>
+          <p><strong>Floor:</strong> <%= duct.floors %></p>
+          <p><strong>Width:</strong> <%= duct.width %></p>
+          <p><strong>Height:</strong> <%= duct.height %></p>
+          <p><strong>Length:</strong> <%= duct.length %></p>
+        </div>
+        <div class="duct-actions">
+          <%= link_to 'View', duct, class: 'btn btn-primary' %>
+          <%= link_to 'Edit', edit_duct_path(duct), class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   <div class="duct-line-actions">
     <%= link_to 'Edit', edit_duct_line_path(@duct_line), class: 'btn btn-primary' %>
     <%= link_to 'Back', duct_lines_path, class: 'btn btn-secondary' %>
+    <%= link_to 'Add New Duct', new_duct_path(duct_line_id: @duct_line.id), class: 'btn btn-success' %>
   </div>
 </div>

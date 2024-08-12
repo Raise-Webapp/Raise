@@ -1,62 +1,51 @@
-# syntax = docker/dockerfile:1
-
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.2.2
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM ruby:$RUBY_VERSION
 
-# Rails app lives here
-WORKDIR /rails
+# Timezone configuration
+RUN echo "Africa/Addis_Ababa" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 
-# Set production environment
-ENV RAILS_ENV="production" \
-    BUNDLE_DEPLOYMENT="1" \
-    BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
-
-
-# Throw-away build stage to reduce size of final image
-FROM base as build
-
-# Install packages needed to build gems
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
 
-# Install application gems
-COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile
+# Create and set working directory
+WORKDIR /opt/app
 
-# Copy application code
+# Copy gemspec and Gemfile
+COPY Gemfile Gemfile.lock ./
+
+# Install bundle dependencies
+RUN bundle install && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
+
+# Copy application files
 COPY . .
 
-# Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile app/ lib/
+# Create necessary directories and set permissions
+# RUN mkdir -p /storage && chown -R rails:rails /storage
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN mkdir -p /storage && chown -R 1000:1000 /storage
 
+RUN bundle exec rails db:migrate
 
-# Final stage for app image
-FROM base
+# # Precompile bootsnap code for faster boot times
+# RUN bundle exec bootsnap precompile app/ lib/
 
-# Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+# # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+# RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-# Copy built artifacts: gems, application
-COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rails /rails
+# # Run and own only the runtime files as a non-root user for security
+# RUN useradd rails --create-home --shell /bin/bash && \
+#     chown -R rails:rails db log storage tmp
+# USER rails:rails
 
-# Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
-USER rails:rails
+# # Create entrypoint script
+# RUN echo '#!/bin/bash\nset -e\n\n# Remove a potentially pre-existing server.pid for Rails.\nrm -f /rails/tmp/pids/server.pid\n\n# Then exec the container'"'"'s main process (what'"'"'s set as CMD in the Dockerfile).\nexec "$@"' > /rails/entrypoint.sh && \
+#     chmod +x /rails/entrypoint.sh
 
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+# # Set the entrypoint
+# ENTRYPOINT ["/rails/entrypoint.sh"]
 
-# Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD ["./bin/rails", "server"]
+# # Start the server by default, this can be overwritten at runtime
+# EXPOSE 3000
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]

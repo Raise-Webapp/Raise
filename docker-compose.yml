@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    environment:
+      - RAILS_ENV=development
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec rails s -b 0.0.0.0
+    volumes:
+      - .:/rails
+      - db_data:/storage
+    ports:
+      - "3000:3000"
+
+volumes:
+  db_data:

@@ -8,6 +8,7 @@ class DuctLinesController < ApplicationController
 
   # GET /duct_lines/1 or /duct_lines/1.json
   def show
+    @duct_line = DuctLine.includes(:ducts).find(params[:id])
   end
 
   # GET /duct_lines/new

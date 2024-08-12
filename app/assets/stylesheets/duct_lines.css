@@ -25,6 +25,18 @@ h1 {
   width: 300px;
 }
 
+.duct-line-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.duct-line-card-link:hover .duct-line-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
 .duct-line-image {
   text-align: center;
   margin-bottom: 5px;
@@ -133,8 +145,13 @@ h1 {
 }
 
 .duct-line-form .image-container img {
-  max-width: 80%;
-  height: auto;
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.duct-line-form .image-container .download-btn {
+  margin-top: 10px;
 }
 
 .duct-line-form .duct-line-actions {
@@ -287,4 +304,62 @@ h1 {
 .duct-line-form .btn {
   flex: 1;
   margin: 0 5px;
+}
+
+.duct-line-form h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #023047;
+}
+
+.duct-line-form .duct-lines-container {
+  margin-bottom: 30px;
+}
+
+.duct-line-form .duct-line-card h3 {
+  color: #023047;
+  margin-bottom: 10px;
+}
+
+.ducts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.duct-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.duct-card h3 {
+  margin-top: 0;
+  color: #023047;
+}
+
+.duct-details {
+  margin-bottom: 10px;
+}
+
+.duct-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.duct-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.duct-actions .btn {
+  flex: 1;
+  margin: 0 5px;
+  font-size: 12px;
+  padding: 6px 10px;
 }

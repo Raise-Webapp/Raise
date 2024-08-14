@@ -3,6 +3,7 @@ FROM ruby:$RUBY_VERSION
 
 # Timezone configuration
 RUN echo "Africa/Addis_Ababa" > /etc/timezone
+ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update -qq && \

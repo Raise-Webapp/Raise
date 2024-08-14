@@ -3,6 +3,7 @@ services:
   web:
     environment:
       - RAILS_ENV=development
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
     build:
       context: .
       dockerfile: Dockerfile

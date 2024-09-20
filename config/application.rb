@@ -38,5 +38,6 @@ module Raise
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.hosts << "raise-zgdt.onrender.com"
   end
 end

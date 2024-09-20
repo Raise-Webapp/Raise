@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.3.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
@@ -59,5 +59,6 @@ group :development do
 end
 
 group :production do
-  gem "pg"
+  # gem "pg"
+  gem "mysql2"
 end

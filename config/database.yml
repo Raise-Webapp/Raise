@@ -21,4 +21,12 @@ test:
   database: storage/test.sqlite3
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: raisemem_raisemem
+  # password: +#[(78fSNcrY6b8vJpW!*G4
+  password: raiseadmin123
+  host: 109.70.148.48
+  port: 3306
+  database: raisemem_prod

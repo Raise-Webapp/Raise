@@ -4,7 +4,6 @@ FROM ruby:$RUBY_VERSION
 # Timezone configuration
 RUN echo "Africa/Addis_Ababa" > /etc/timezone
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
-ENV SECRET_KEY_BASE=${SECRET_KEY_BASE}
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update -qq && \

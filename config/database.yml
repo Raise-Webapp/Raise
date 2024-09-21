@@ -22,10 +22,10 @@ test:
 
 production:
   adapter: mysql2
-  encoding: <%= ENV.fetch("DATABASE_ENCODING") { "utf8mb4" } %>
-  pool: <%= ENV.fetch("DATABASE_POOL") { 5 } %>
-  username: <%= ENV.fetch("DATABASE_USERNAME") %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
-  host: <%= ENV.fetch("DATABASE_HOST") %>
-  port: <%= ENV.fetch("DATABASE_PORT") %>
-  database: <%= ENV.fetch("DATABASE_NAME") %>
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: raisemem_raisemem
+  password: raiseadmin123
+  host: 109.70.148.48
+  port: 3306
+  database: raisemem_prod

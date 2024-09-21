@@ -21,12 +21,11 @@ test:
   database: storage/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: raisemem_raisemem
-  # password: +#[(78fSNcrY6b8vJpW!*G4
-  password: raiseadmin123
-  host: 109.70.148.48
-  port: 3306
-  database: raisemem_prod
+  adapter: <%= ENV["DATABASE_ADAPTER"] %>
+  encoding: <%= ENV["DATABASE_ENCODING"] %>
+  pool: <%= ENV.fetch("DATABASE_POOL") { 5 } %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  port: <%= ENV["DATABASE_PORT"] %>
+  database: <%= ENV["DATABASE_NAME"] %>

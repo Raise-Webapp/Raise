@@ -22,7 +22,7 @@
       <div class="duct-line-actions">
         <%= link_to 'View', duct_line, class: 'btn btn-primary' %>
         <%= link_to 'Edit', edit_duct_line_path(duct_line), class: 'btn btn-secondary' %>
-        <%= link_to 'Delete', duct_line, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <%= link_to 'Delete', duct_line_path(duct_line), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
       </div>
     </div>
   <% end %>

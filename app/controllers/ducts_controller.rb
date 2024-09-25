@@ -8,6 +8,14 @@ class DuctsController < ApplicationController
 
   # GET /ducts/1 or /ducts/1.json
   def show
+    qr = RQRCode::QRCode.new("
+      #{request.base_url}/ducts/#{@duct.id}")
+    png = qr.as_png(
+      resize_gte_to: false,
+      border_modules: 4,
+      module_px_size: 6
+    )
+    @png = png.to_data_url
   end
 
   # GET /ducts/new

@@ -81,6 +81,7 @@ GEM
     bootsnap (1.18.4)
       msgpack (~> 1.2)
     builder (3.3.0)
+    chunky_png (1.4.0)
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -188,6 +189,10 @@ GEM
       psych (>= 4.0.0)
     reline (0.5.10)
       io-console (~> 0.5)
+    rqrcode (2.2.0)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -238,6 +243,7 @@ DEPENDENCIES
   mysql2
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
+  rqrcode
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

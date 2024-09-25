@@ -38,6 +38,8 @@ module Raise
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.hosts << "www.qr.raisemanufacturing.com"
+    config.hosts << "qr.raisemanufacturing.com"
     config.hosts << "raise-2.onrender.com"
     config.secret_key_base = ENV["SECRET_KEY_BASE"]
   end

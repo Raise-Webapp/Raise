@@ -18,6 +18,11 @@
         <nav>
           <%= link_to 'Duct Line', duct_lines_path, class: 'nav-button' %>
           <%= link_to 'Duct', ducts_path, class: 'nav-button' %>
+          <% if session[:user_id] %>
+            <%= link_to 'Logout', '/logout', method: :delete, class: 'nav-button' %>
+          <% else %>
+            <%= link_to 'Login', '/login', class: 'nav-button' %>
+          <% end %>
         </nav>
       </div>
     </header>

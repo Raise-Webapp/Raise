@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   get '/login', to: 'users#new'
   post '/login', to: 'users#create'
   delete '/logout', to: 'users#destroy'
+  get 'logout', to: 'users#destroy'
 
 end

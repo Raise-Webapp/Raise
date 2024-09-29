@@ -8,6 +8,14 @@ class DuctLinesController < ApplicationController
 
   # GET /duct_lines/1 or /duct_lines/1.json
   def show
+    qr = RQRCode::QRCode.new("
+    #{request.base_url}/duct_lines/#{@duct_line.id}")
+    png = qr.as_png(
+      resize_gte_to: false,
+      border_modules: 4,
+      module_px_size: 6
+    )
+    @png = png.to_data_url
     @duct_line = DuctLine.includes(:ducts).find(params[:id])
   end
 

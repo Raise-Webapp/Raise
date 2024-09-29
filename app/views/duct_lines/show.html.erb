@@ -47,5 +47,34 @@
       <%= link_to 'Edit', edit_duct_line_path(@duct_line), class: 'btn btn-primary' %>
       <%= link_to 'Add New Duct', new_duct_path(duct_line_id: @duct_line.id), class: 'btn btn-success' %>
     <% end %>
+    <%= button_to 'Get QR' , '#', id: "get_qr", class: "btn btn-primary", :onclick => "return false;" %>
   </div>
+  <br>
+    <img id="qr" style="width: 200px; height: 200px; display: none" src="<%= @png %>" />
+  <div style="display: flex; justify-content: center">
+    <button style="width: 40px; display: none; margin-top: 10px" class="btn btn-primary" id="hide">HIDE</button>
+    <button style="width: 40px; display: none; margin-top: 10px;" class="btn btn-primary" id="save">SAVE</button>
+  </div>
+  <script>
+    document.getElementById("get_qr").addEventListener("click", function(){
+      document.getElementById("qr").style.display = "block";
+      document.getElementById("hide").style.display = "inline";
+      document.getElementById("save").style.display = "inline";
+    });
+
+    document.getElementById("hide").addEventListener("click", function(){
+      document.getElementById("qr").style.display = "none";
+      document.getElementById("hide").style.display = "none";
+      document.getElementById("save").style.display = "none";
+    });
+
+    document.getElementById("save").addEventListener("click", function(){
+      var link = document.createElement('a');
+      link.href = document.getElementById("qr").src;
+      link.download = "duct.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  </script>
 </div>

@@ -17,12 +17,12 @@
 
   <div class="field">
     <%= form.label :line_type, "Line Type" %>
-    <%= form.select :line_type, ["Type 1", "Type 2", "Type 3"], { prompt: "Line Type" }, class: "form-control" %>
+    <%= form.select :line_type, ["Fresh Air Supply Duct(FSD)", "Exhaust Air Duct(EAD)", "Cold Air Supply Duct(CSD)", "Cold Air Return Duct(CRD)"], { prompt: "Line Type" }, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :location %>
-    <%= form.select :location, ["Location 1", "Location 2", "Location 3"], { prompt: "Location" }, class: "form-control" %>
+    <%= form.text_field :location, placeholder: "Location", { prompt: "Location" }, class: "form-control" %>
   </div>
 
   <div class="field">

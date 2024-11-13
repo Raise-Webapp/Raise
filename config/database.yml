@@ -26,6 +26,6 @@ production:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: raisemem_raisemem
   password: raiseadmin123
-  host: 109.70.148.48
+  host: 91.204.209.6
   port: 3306
   database: raisemem_prod

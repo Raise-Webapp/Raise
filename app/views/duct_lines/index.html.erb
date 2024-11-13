@@ -30,7 +30,7 @@
         <%= link_to 'View', duct_line, class: 'btn btn-primary' %>
         <% if session[:user_id] %>
           <%= link_to 'Edit', edit_duct_line_path(duct_line), class: 'btn btn-secondary' %>
-          <%= link_to 'Delete', duct_line_path(duct_line), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= button_to 'Delete', duct_line, method: :delete, data: { confirm: 'Are you sure?', turbo: false }, class: 'btn btn-danger', form_class: 'inline' %>
         <% end %>
       </div>
     </div>

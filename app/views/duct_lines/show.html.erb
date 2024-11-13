@@ -47,6 +47,7 @@
     <% if session[:user_id] %>
       <%= link_to 'Edit', edit_duct_line_path(@duct_line), class: 'btn btn-primary' %>
       <%= link_to 'Add New Duct', new_duct_path(duct_line_id: @duct_line.id), class: 'btn btn-success' %>
+      <%= button_to 'Delete', @duct_line, method: :delete, data: { confirm: 'Are you sure?', turbo: false }, class: 'btn btn-danger', form_class: 'inline' %>
     <% end %>
     <%= button_to 'Get QR' , '#', id: "get_qr", class: "btn btn-primary", :onclick => "return false;" %>
   </div>

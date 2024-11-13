@@ -2,7 +2,9 @@
   <h1><%= @duct.duct_line.name %> - <%= @duct.position %></h1>
 
   <div class="duct-details">
-    <%= image_tag @duct.duct_line.image, class: "full-size" %>
+    <% if @duct.duct_line.image.attached? %>
+      <%= image_tag @duct.duct_line.image, style: "max-width: 100%; height: auto;" %>
+    <% end %>
     <p><strong>Location:</strong> <%= @duct.location %></p>
     <p><strong>Floor:</strong> <%= @duct.floors %></p>
     <p><strong>Position:</strong> <%= @duct.position %></p>
@@ -18,7 +20,7 @@
     <% end %>
     <%= link_to 'Back', ducts_path, class: 'btn btn-secondary' %>
     <% if session[:user_id] %>
-      <%= button_to 'Delete', @duct, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', form_class: 'inline' %>
+      <%= button_to 'Delete', @duct, method: :delete, data: { confirm: 'Are you sure?', turbo: false }, class: 'btn btn-danger', form_class: 'inline' %>
     <% end %>
     <%= button_to 'Get QR' , '#', id: "get_qr", class: "btn btn-primary", :onclick => "return false;" %>
   </div>

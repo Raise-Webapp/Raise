@@ -16,7 +16,9 @@
          data-width="<%= duct.width.to_s.downcase %>"
          data-height="<%= duct.height.to_s.downcase %>"
          data-length="<%= duct.length.to_s.downcase %>">
-      <%= image_tag duct.duct_line.image, class: "thumbnail" %>
+       <% if duct.duct_line.image.attached? %>
+         <%= image_tag duct.duct_line.image, style: "max-width: 100%; height: auto;" %>
+       <% end %>
       <h2><%= duct.duct_line.name %></h2>
       <p><strong>Line Type:</strong> <%= duct.line_type %></p>
       <p><strong>Location:</strong> <%= duct.location %></p>
@@ -29,7 +31,7 @@
         <%= link_to 'View', duct, class: 'btn btn-primary' %>
         <% if session[:user_id] %>
           <%= link_to 'Edit', edit_duct_path(duct), class: 'btn btn-secondary' %>
-          <%= link_to 'Delete', duct, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Delete', duct, method: :delete, data: { confirm: 'Are you sure?', turbo: false }, class: 'btn btn-danger' %>
         <% end %>
       </div>
     </div>

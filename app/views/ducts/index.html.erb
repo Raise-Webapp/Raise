@@ -1,8 +1,22 @@
 <h1>Ducts</h1>
 
+<div class="form-outline mb-4" data-mdb-input-init>
+  <input type="text" id="search-input" class="form-control" placeholder="Search Ducts" aria-label="Search" onkeyup="filterDuctLines()" />
+  <br/>
+  <br/>
+</div>
+
 <div class="duct-lines-container">
   <% @ducts.each do |duct| %>
-    <div class="duct-line-card">
+    <div class="duct-line-card" data-name="<%= duct.duct_line.name.downcase %>"
+         data-line-type="<%= duct.line_type.downcase %>"
+         data-location="<%= duct.location.downcase %>"
+         data-floor="<%= duct.floors.to_s.downcase %>"
+         data-position="<%= duct.position.downcase %>"
+         data-width="<%= duct.width.to_s.downcase %>"
+         data-height="<%= duct.height.to_s.downcase %>"
+         data-length="<%= duct.length.to_s.downcase %>">
+      <%= image_tag duct.duct_line.image, class: "thumbnail" %>
       <h2><%= duct.duct_line.name %></h2>
       <p><strong>Line Type:</strong> <%= duct.line_type %></p>
       <p><strong>Location:</strong> <%= duct.location %></p>
@@ -14,8 +28,8 @@
       <div class="duct-line-actions">
         <%= link_to 'View', duct, class: 'btn btn-primary' %>
         <% if session[:user_id] %>
-        <%= link_to 'Edit', edit_duct_path(duct), class: 'btn btn-secondary' %>
-        <%= link_to 'Delete', duct, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Edit', edit_duct_path(duct), class: 'btn btn-secondary' %>
+          <%= link_to 'Delete', duct, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         <% end %>
       </div>
     </div>
@@ -25,3 +39,32 @@
 <% if session[:user_id] %>
   <%= link_to 'New Duct', new_duct_path, class: 'btn btn-success' %>
 <% end %>
+
+<script>
+  function filterDuctLines() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const ductCards = document.querySelectorAll('.duct-line-card');
+
+    ductCards.forEach(card => {
+      const name = card.getAttribute('data-name');
+      const lineType = card.getAttribute('data-line-type');
+      const location = card.getAttribute('data-location');
+      const floor = card.getAttribute('data-floor');
+      const position = card.getAttribute('data-position');
+      const width = card.getAttribute('data-width');
+      const height = card.getAttribute('data-height');
+      const length = card.getAttribute('data-length');
+
+      // Check if the query matches any of the relevant fields
+      if (
+        name.includes(query) || lineType.includes(query) || location.includes(query) ||
+        floor.includes(query) || position.includes(query) ||
+        width.includes(query) || height.includes(query) || length.includes(query)
+      ) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>

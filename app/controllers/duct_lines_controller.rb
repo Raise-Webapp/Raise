@@ -74,6 +74,6 @@ class DuctLinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def duct_line_params
-      params.require(:duct_line).permit(:name, :image, :pdf_document)
+      params.require(:duct_line).permit(:name, :image, :pdf_document, :duct_type)
     end
 end

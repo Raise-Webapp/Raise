@@ -2,6 +2,7 @@
   <h1><%= @duct.duct_line.name %> - <%= @duct.position %></h1>
 
   <div class="duct-details">
+    <%= image_tag @duct.duct_line.image, class: "full-size" %>
     <p><strong>Location:</strong> <%= @duct.location %></p>
     <p><strong>Floor:</strong> <%= @duct.floors %></p>
     <p><strong>Position:</strong> <%= @duct.position %></p>

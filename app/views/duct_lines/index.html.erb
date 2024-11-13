@@ -1,9 +1,16 @@
 <h1>Duct Lines</h1>
 
+<div class="form-outline mb-4" data-mdb-input-init>
+  <input type="text" id="search-input" class="form-control" placeholder="Search Duct Lines..." aria-label="Search" onkeyup="filterDuctLines()" />
+  <br/>
+  <br/>
+</div>
+
 <div class="duct-lines-container">
   <% @duct_lines.each do |duct_line| %>
-    <div class="duct-line-card">
+    <div class="duct-line-card" data-name="<%= duct_line.name.downcase %>">
       <h2><%= duct_line.name %></h2>
+      <h4><%= duct_line.duct_type %></h4>
       <div class="duct-line-image">
         <% if duct_line.image.attached? %>
           <%= image_tag duct_line.image, class: "thumbnail" %>
@@ -31,5 +38,21 @@
 </div>
 
 <% if session[:user_id] %>
-<%= link_to 'New Duct Line', new_duct_line_path, class: 'btn btn-success' %>
+  <%= link_to 'New Duct Line', new_duct_line_path, class: 'btn btn-success' %>
 <% end %>
+
+<script>
+  function filterDuctLines() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const cards = document.querySelectorAll('.duct-line-card');
+
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name');
+      if (name.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>

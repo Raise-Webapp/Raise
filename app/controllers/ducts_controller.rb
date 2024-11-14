@@ -73,6 +73,6 @@ class DuctsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def duct_params
-      params.require(:duct).permit(:width, :height, :length, :line_type, :location, :floors, :position, :duct_line_id)
+      params.require(:duct).permit(:width, :height, :length, :line_type, :location, :floors, :position, :duct_line_id, :duct_type)
     end
 end

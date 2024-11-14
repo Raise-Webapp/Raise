@@ -10,7 +10,6 @@
   <% @duct_lines.each do |duct_line| %>
     <div class="duct-line-card" data-name="<%= duct_line.name.downcase %>">
       <h2><%= duct_line.name %></h2>
-      <h4><%= duct_line.duct_type %></h4>
       <div class="duct-line-image">
         <% if duct_line.image.attached? %>
           <%= image_tag duct_line.image, class: "thumbnail" %>

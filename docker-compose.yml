@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     environment:
-      - RAILS_ENV=development
+      - RAILS_ENV=production
     build:
       context: .
       dockerfile: Dockerfile

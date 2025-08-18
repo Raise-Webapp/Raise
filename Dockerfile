@@ -37,7 +37,7 @@ COPY . .
 RUN mkdir -p /storage && chown -R 1000:1000 /storage
 
 # RUN bundle exec rails credentials:edit
-RUN bundle exec rails db:create db:migrate db:seed RAILS_ENV=development
+RUN bundle exec rails db:create db:migrate db:seed RAILS_ENV=production
 # RUN bundle exec rails credentials:edit
 # # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/

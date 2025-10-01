@@ -1,5 +1,6 @@
 class DuctsController < ApplicationController
   before_action :set_duct, only: %i[ show edit update destroy ]
+  before_action :require_login, only: [:index,:new, :create, :edit, :update, :destroy]
 
   # GET /ducts or /ducts.json
   def index

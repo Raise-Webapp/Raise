@@ -17,7 +17,7 @@
 
   <div class="field">
     <%= form.label :line_type, "Line Type" %>
-    <%= form.select :line_type, ["Fresh Air Supply Duct(FSD)", "Exhaust Air Duct(EAD)", "Cold Air Supply Duct(CSD)", "Cold Air Return Duct(CRD)"], { prompt: "Line Type" }, class: "form-control" %>
+    <%= form.select :line_type, ["Fresh Air Supply Duct(FSD)", "Exhaust Air Duct(EAD)", "Cold Air Supply Duct(CSD)", "Cold Air Return Duct(CRD)", "Kitchen Air Exhaust(KAE)", "Toilet Air Exhaust(TAE)",  "Pressure Air Supply(PAS)", "Hot Air Supply(HAS)", "Hot Air Return(HAR)", "Smoke Air Exhaust(SAE)"], { prompt: "Line Type" }, class: "form-control" %>
   </div>
 
   <div class="field">
@@ -38,6 +38,21 @@
   <div class="field">
     <%= form.label :position %>
     <%= form.text_field :position, placeholder: "Position on Image" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :material_type %>
+    <%= form.text_field :material_type, placeholder: "Material Type" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :material_thickness %>
+    <%= form.text_field :material_thickness, placeholder: "Material Thickness" %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :item_number %>
+    <%= form.number_field :item_number, placeholder: "Item Number" %>
   </div>
 
   <div class="field">

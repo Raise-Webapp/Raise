@@ -13,6 +13,9 @@
          data-location="<%= duct.location.downcase %>"
          data-floor="<%= duct.floors.to_s.downcase %>"
          data-position="<%= duct.position.downcase %>"
+         data-material-type="<%= duct.material_type.to_s.downcase %>"
+         data-material-thickness="<%= duct.material_thickness.to_s.downcase %>"
+         data-item-number="<%= duct.item_number.to_s.downcase %>"
          data-width="<%= duct.width.to_s.downcase %>"
          data-height="<%= duct.height.to_s.downcase %>"
          data-length="<%= duct.length.to_s.downcase %>">
@@ -25,6 +28,9 @@
       <p><strong>Location:</strong> <%= duct.location %></p>
       <p><strong>Floor:</strong> <%= duct.floors %></p>
       <p><strong>Position:</strong> <%= duct.position %></p>
+      <p><strong>Material Type:</strong> <%= duct.material_type %></p>
+      <p><strong>Material Thickness:</strong> <%= duct.material_thickness %></p>
+      <p><strong>Item Number:</strong> <%= duct.item_number %></p>
       <p><strong>Width:</strong> <%= duct.width %></p>
       <p><strong>Height:</strong> <%= duct.height %></p>
       <p><strong>Length:</strong> <%= duct.length %></p>
@@ -54,6 +60,9 @@
       const location = card.getAttribute('data-location');
       const floor = card.getAttribute('data-floor');
       const position = card.getAttribute('data-position');
+      const materialType = card.getAttribute('data-position');
+      const materialThickness = card.getAttribute('data-position');
+      const itemNumber = card.getAttribute('data-position');
       const width = card.getAttribute('data-width');
       const height = card.getAttribute('data-height');
       const length = card.getAttribute('data-length');
@@ -61,8 +70,9 @@
       // Check if the query matches any of the relevant fields
       if (
         name.includes(query) || lineType.includes(query) || location.includes(query) ||
-        floor.includes(query) || position.includes(query) ||
-        width.includes(query) || height.includes(query) || length.includes(query)
+        floor.includes(query) || position.includes(query) || materialType.includes(query) || 
+        materialThickness.includes(query) || itemNumber.includes(query) || width.includes(query) || 
+        height.includes(query) || length.includes(query)
       ) {
         card.style.display = '';
       } else {

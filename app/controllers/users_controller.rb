@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Login successful!"
+      redirect_to duct_lines_path, notice: "Login successful!"
     else
       flash.now[:alert] = "Invalid username or password"
       render :new

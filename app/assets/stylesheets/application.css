@@ -68,3 +68,13 @@ nav {
 main {
   padding-top: 10px;
 }
+
+.fixed-add-duct {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 14px 22px;
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
